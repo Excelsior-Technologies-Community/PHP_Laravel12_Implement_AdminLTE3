@@ -1,66 +1,375 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# PHP_Laravel12_Implement_AdminLTE3
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+---
 
-## About Laravel
+## Project Description
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+This project demonstrates how to integrate **AdminLTE 3** with **Laravel 12**  
+and create a simple **Admin Dashboard** with user statistics.
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+### The main purpose of this project is to understand how to:
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+Integrate AdminLTE 3 template into a Laravel application
 
-## Learning Laravel
+Use AdminLTE layouts, components, and design structure
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+Create a dashboard page using Laravel Blade templates
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+### Display basic user statistics such as:
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+Total registered users
 
-## Laravel Sponsors
+Users registered today
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+### The project uses Laravel’s MVC architecture, where:
 
-### Premium Partners
+Controller handles the logic (counting users)
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[WebReinvent](https://webreinvent.com/)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Jump24](https://jump24.co.uk)**
-- **[Redberry](https://redberry.international/laravel/)**
-- **[Active Logic](https://activelogic.com)**
-- **[byte5](https://byte5.de)**
-- **[OP.GG](https://op.gg)**
+Model interacts with the database
 
-## Contributing
+View displays data using AdminLTE UI
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+### This project is very useful for beginners and freshers to learn:
 
-## Code of Conduct
+Admin panel development
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+Laravel routing and controllers
 
-## Security Vulnerabilities
+Blade templating
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+Database interaction using Eloquent ORM
 
-## License
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+---
+
+
+# Project SetUp
+
+---
+
+## STEP 1: Create New Laravel 12 Project
+
+### Run Command :
+
+```
+composer create-project laravel/laravel:^12.0 PHP_Laravel12_Implement_AdminLTE3
+
+```
+
+### Go inside project:
+
+```
+cd PHP_Laravel12_Implement_AdminLTE3
+
+```
+
+Make sure Laravel 12 is installed successfully.
+
+
+
+## STEP 2: Database Configuration
+
+### Open .env file and update database credentials:
+
+```
+
+DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE=adminlte
+DB_USERNAME=root
+DB_PASSWORD=
+
+```
+
+### Create database:
+
+```
+adminlte
+
+```
+
+### Then run migrations:
+
+```
+php artisan migrate
+
+```
+
+
+
+
+## STEP 3: Install the AdminLTE Package
+
+We’ll use the official Laravel-AdminLTE package (jeroennoten/laravel-adminlte) which makes it super easy to integrate AdminLTE into Laravel.
+
+### Run:
+
+```
+
+composer require jeroennoten/laravel-adminlte
+
+```
+
+This installs the package and prepares your Laravel app to use AdminLTE.
+
+
+
+
+## STEP 4: Publish & Install AdminLTE Assets
+
+### Now we install AdminLTE resources (CSS, JS, views, config):
+
+```
+php artisan adminlte:install
+
+```
+
+What this does:
+
+ Publishes configuration file: config/adminlte.php
+ Publishes blade views and assets (vendor CSS/JS)
+ Sets up base AdminLTE template structure
+
+
+
+## STEP 5: Add Authentication (Optional but Recommended)
+
+### If you want login, register, logout pages styled with AdminLTE, install Laravel UI and bootstrap scaffolding:
+
+```
+
+composer require laravel/ui
+php artisan ui bootstrap --auth
+
+```
+
+### Now replace Laravel’s default auth views with AdminLTE’s styled ones:
+
+```
+php artisan adminlte:install --only=auth_views
+
+```
+
+This will apply AdminLTE design to:
+ Login page
+ Register page
+ Reset password pages
+ Email verification pages
+
+
+
+
+## STEP 6: Create Dashboard Controller (VERY IMPORTANT)
+
+### Run this command:
+
+```
+php artisan make:controller DashboardController
+
+```
+
+### Open : app/Http/Controllers/DashboardController.php
+
+```
+
+<?php
+
+namespace App\Http\Controllers;
+
+use App\Models\User;
+
+class DashboardController extends Controller
+{
+    public function index()
+    {
+        $totalUsers = User::count();
+
+        $todayUsers = User::whereDate('created_at', today())->count();
+
+        return view('home', compact('totalUsers', 'todayUsers'));
+    }
+}
+
+
+
+```
+
+
+
+
+## STEP 7: Create a Dashboard View
+
+### Open home view: resources/views/home.blade.php
+
+```
+@extends('adminlte::page')
+
+@section('title', 'Dashboard')
+
+@section('content_header')
+    <h1>Dashboard</h1>
+@stop
+
+@section('content')
+<div class="row">
+
+    <div class="col-md-6 col-lg-3">
+        <div class="info-box bg-info">
+            <span class="info-box-icon">
+                <i class="fas fa-users"></i>
+            </span>
+            <div class="info-box-content">
+                <span class="info-box-text">Total Users</span>
+                <span class="info-box-number">{{ $totalUsers }}</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-6 col-lg-3">
+        <div class="info-box bg-success">
+            <span class="info-box-icon">
+                <i class="fas fa-user-plus"></i>
+            </span>
+            <div class="info-box-content">
+                <span class="info-box-text">Today Users</span>
+                <span class="info-box-number">{{ $todayUsers }}</span>
+            </div>
+        </div>
+    </div>
+
+</div>
+@stop
+
+```
+
+
+## STEP 8: Setup Routes
+
+### Add your web routes in routes/web.php:
+
+```
+<?php
+
+use App\Http\Controllers\DashboardController;
+
+Route::get('/', [DashboardController::class, 'index']);
+
+
+
+```
+
+
+
+
+## STEP 9: Installation
+
+### Open new terminal in this project and Run:
+
+```
+
+npm install
+
+npm run dev
+
+```
+
+## STEP 10:Running the App
+
+### Finally run the development server:
+
+```
+php artisan serve
+
+```
+
+### Visit in browser:
+
+```
+http://localhost:8000
+
+```
+
+
+So You can see this type Output:
+
+
+<img width="1907" height="973" alt="Screenshot 2026-01-02 102219" src="https://github.com/user-attachments/assets/54ec57c5-a7fc-41f1-a1a2-5a7d792315c0" />
+
+
+
+---
+
+
+## Project Folder Structure
+
+
+```
+
+PHP_Laravel12_Implement_AdminLTE3/
+│
+├── app/
+│   ├── Http/
+│   │   ├── Controllers/
+│   │   │   └── DashboardController.php   # Dashboard logic
+│   │   │
+│   │   └── Middleware/
+│   │
+│   ├── Models/
+│   │   └── User.php                      # User model
+│   │
+│   └── Providers/
+│
+├── bootstrap/
+│   └── app.php
+│
+├── config/
+│   ├── adminlte.php                     # AdminLTE configuration
+│   ├── app.php
+│   └── database.php
+│
+├── database/
+│   ├── migrations/                      # Database migrations
+│   │   └── xxxx_create_users_table.php
+│   │
+│   └── seeders/
+│
+├── public/
+│   ├── css/
+│   ├── js/
+│   ├── vendor/                          # AdminLTE assets
+│   └── index.php
+│
+├── resources/
+│   ├── views/
+│   │   ├── home.blade.php               # Dashboard view
+│   │   ├── auth/                        # Login / Register views (AdminLTE)
+│   │   └── vendor/
+│   │       └── adminlte/                # AdminLTE blade templates
+│   │
+│   ├── css/
+│   └── js/
+│
+├── routes/
+│   ├── web.php                          # Web routes
+│   └── api.php
+│
+├── storage/
+│   ├── app/
+│   ├── framework/
+│   └── logs/
+│
+├── tests/
+│
+├── vendor/                              # Composer packages
+│
+├── .env                                 # Environment configuration
+├── .env.example
+├── artisan                              # Artisan CLI
+├── composer.json
+├── package.json
+├── phpunit.xml
+├── README.md                            # Project documentation
+└── vite.config.js
+
+```
