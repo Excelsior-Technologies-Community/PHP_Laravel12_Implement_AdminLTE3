@@ -310,6 +310,39 @@ return [
             'topnav_right' => true,
         ],
 
+        [
+            'text'         => 'Language',
+            'icon'         => 'fas fa-fw fa-language',
+            'topnav_right' => true,
+            'submenu'      => [
+                ['text' => 'English (en)', 'url' => 'lang/en'],
+                ['text' => 'Arabic (ar)', 'url' => 'lang/ar'],
+                ['text' => 'Bengali (bn)', 'url' => 'lang/bn'],
+                ['text' => 'Catalan (ca)', 'url' => 'lang/ca'],
+                ['text' => 'German (de)', 'url' => 'lang/de'],
+                ['text' => 'Spanish (es)', 'url' => 'lang/es'],
+                ['text' => 'Persian (fa)', 'url' => 'lang/fa'],
+                ['text' => 'French (fr)', 'url' => 'lang/fr'],
+                ['text' => 'Croatian (hr)', 'url' => 'lang/hr'],
+                ['text' => 'Hungarian (hu)', 'url' => 'lang/hu'],
+                ['text' => 'Indonesian (id)', 'url' => 'lang/id'],
+                ['text' => 'Italian (it)', 'url' => 'lang/it'],
+                ['text' => 'Japanese (ja)', 'url' => 'lang/ja'],
+                ['text' => 'Latin (la)', 'url' => 'lang/la'],
+                ['text' => 'Dutch (nl)', 'url' => 'lang/nl'],
+                ['text' => 'Polish (pl)', 'url' => 'lang/pl'],
+                ['text' => 'Portuguese BR (pt-br)', 'url' => 'lang/pt-br'],
+                ['text' => 'Portuguese PT (pt-pt)', 'url' => 'lang/pt-pt'],
+                ['text' => 'Russian (ru)', 'url' => 'lang/ru'],
+                ['text' => 'Slovak (sk)', 'url' => 'lang/sk'],
+                ['text' => 'Serbian (sr)', 'url' => 'lang/sr'],
+                ['text' => 'Turkish (tr)', 'url' => 'lang/tr'],
+                ['text' => 'Ukrainian (uk)', 'url' => 'lang/uk'],
+                ['text' => 'Vietnamese (vi)', 'url' => 'lang/vi'],
+                ['text' => 'Chinese (zh-CN)', 'url' => 'lang/zh-CN'],
+            ],
+        ],
+
         // Sidebar items:
         [
             'type' => 'sidebar-menu-search',
@@ -330,7 +363,7 @@ return [
         ['header' => 'account_settings'],
         [
             'text' => 'profile',
-            'url' => 'admin/settings',
+            'url' => 'profile',
             'icon' => 'fas fa-fw fa-user',
         ],
         [
