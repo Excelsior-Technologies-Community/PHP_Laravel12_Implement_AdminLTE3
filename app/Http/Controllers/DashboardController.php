@@ -7,39 +7,33 @@ use Carbon\Carbon;
 
 class DashboardController extends Controller
 {
-    public function __construct()
-    {
-        // Protect dashboard (login required)
-        $this->middleware('auth');
-    }
-
     public function index()
     {
+        // Basic statistics
         $totalUsers = User::count();
-
         $todayUsers = User::whereDate('created_at', today())->count();
-
-        // ===== Chart Data (Last 7 Days) =====
-        $days = [];
-        $counts = [];
-
+        
+        // Advanced statistics
+        $weekUsers = User::whereBetween('created_at', [Carbon::now()->startOfWeek(), Carbon::now()->endOfWeek()])->count();
+        $monthUsers = User::whereMonth('created_at', Carbon::now()->month)->count();
+        $verifiedUsers = User::whereNotNull('email_verified_at')->count();
+        $last7DaysUsers = User::where('created_at', '>=', Carbon::now()->subDays(7))->count();
+        
+        // Chart data for last 7 days
+        $chartData = [];
         for ($i = 6; $i >= 0; $i--) {
             $date = Carbon::now()->subDays($i);
-
-            $days[] = $date->format('d M');
-
-            $counts[] = User::whereDate('created_at', $date->format('Y-m-d'))->count();
+            $chartData[$date->format('M d')] = User::whereDate('created_at', $date)->count();
         }
-
-        // ===== Latest Users =====
-        $latestUsers = User::latest()->take(5)->get();
-
+        
         return view('home', compact(
-            'totalUsers',
+            'totalUsers', 
             'todayUsers',
-            'days',
-            'counts',
-            'latestUsers'
+            'weekUsers',
+            'monthUsers', 
+            'verifiedUsers',
+            'last7DaysUsers',
+            'chartData'
         ));
     }
 }

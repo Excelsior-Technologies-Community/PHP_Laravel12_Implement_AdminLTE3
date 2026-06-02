@@ -3,11 +3,20 @@
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\DashboardController;
-use App\Http\Controllers\Admin\ProfileController;
+use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\ProfileController;
 
 Auth::routes();
-Route::get('/', [DashboardController::class, 'index']);
 
+// Dashboard
+Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
+
+// User Management Routes
+Route::middleware(['auth'])->prefix('admin')->name('admin.')->group(function () {
+    Route::resource('users', UserController::class);
+});
+
+// Language Routes
 Route::get('lang/{locale}', function ($locale) {
     $allowedLocales = [
         'en', 'ar', 'bn', 'ca', 'de', 'es', 'fa', 'fr', 'hr', 'hu', 
@@ -20,9 +29,10 @@ Route::get('lang/{locale}', function ($locale) {
     }
     
     return redirect()->back();
-});
+})->name('lang.switch');
 
-Route::middleware('auth')->group(function () {
-    Route::get('/profile', [ProfileController::class, 'index'])->name('admin.profile');
-    Route::post('/profile', [ProfileController::class, 'update'])->name('admin.profile.update');
+// Profile Routes
+Route::middleware(['auth'])->group(function () {
+    Route::get('/profile', [ProfileController::class, 'index'])->name('profile.index');
+    Route::post('/profile', [ProfileController::class, 'update'])->name('profile.update');
 });
